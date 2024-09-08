@@ -100,7 +100,7 @@ if args.plot:
         print(f"Attack configs: eps = {eps}/255, alpha = {ALPHA}, steps = {STEPS}, batch size = {BATCH_SIZE}")
         x.append(f"{eps}/255")
         attacker = ResnetPGDAttacker(model, dset_loader)
-        attacker.pgd_batch_attack(eps, ALPHA, STEPS, BATCH_NUM)
+        attacker.pgd_batch_attack(eps/255, ALPHA, STEPS, BATCH_NUM)
         y.append(attacker.adv_acc * 100)
     pd.to_pickle([x, y], "x-y.pkl")
     plt.plot(x, y)
