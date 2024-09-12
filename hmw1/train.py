@@ -116,12 +116,11 @@ val_ds = val_ds.map(preprocess_img)
 val_ds = val_ds.take(2000)
 val_dset_loader = DataLoader(val_ds, batch_size=BATCH_SIZE)
 
-# Train modelacc0.72-epoch2-lr0.0001-step300-mixed.pth
+
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 trainer = Trainer(adv_model, attacker, train_dset_loader, val_dset_loader, device, args.lr,
                   args.epochs, attack=args.adv_data_path is None, val_steps=args.val_steps)
-# trainer.val()
-# print(trainer.acc)
+
 trainer.fit()
 # trainer.val()
 # print(trainer.acc)
